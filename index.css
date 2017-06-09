@@ -1,0 +1,34 @@
+
+body {
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.e-header {
+  background: #607d8b;
+}
+
+.e-header a {
+  color: #fff;
+}
+
+.e-header .navbar {
+  padding: 10px 0;
+}
+
+.e-header .navbar-brand {
+  font-size: 20px;
+  letter-spacing: .2px;
+}
+
+.e-content .tab-block {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.e-content h2 {
+  margin-left: 10px;
+}
+
+.e-content .img-responsive {
+  max-height: 150px;
+}
