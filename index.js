@@ -26,13 +26,14 @@ app.sources = {
 }
 
 app.get = (file) => {
-  if (!app.sources[file].data) {
+  var key = file.replace(/^org-|fb-/, '')
+  if (!app.sources[key].data) {
     m.request({
-      url: 'https://raw.githubusercontent.com/varnalab/varnalab-data/master/dump/'
+      url: 'https://raw.githubusercontent.com/varnalab/varnalab-data/master/dump/events/'
         + file + '.json'
     })
     .then((data) => {
-      app.sources[file].data = data
+      app.sources[key].data = data
     })
   }
 }
@@ -43,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
       onmatch: () => {
         app.files.forEach((file) => app.sources[file].active = false)
         app.sources.articles.active = true
-        app.get('articles')
+        app.get('org-articles')
       },
       render: () =>
         m(app.components.layout, {
@@ -62,7 +63,7 @@ window.addEventListener('DOMContentLoaded', () => {
       onmatch: () => {
         app.files.forEach((file) => app.sources[file].active = false)
         app.sources.events.active = true
-        app.get('events')
+        app.get('org-events')
       },
       render: () =>
         m(app.components.layout, {
@@ -80,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
       onmatch: () => {
         app.files.forEach((file) => app.sources[file].active = false)
         app.sources.group.active = true
-        app.get('group')
+        app.get('fb-group')
       },
       render: () =>
         m(app.components.layout, {
@@ -98,7 +99,7 @@ window.addEventListener('DOMContentLoaded', () => {
       onmatch: () => {
         app.files.forEach((file) => app.sources[file].active = false)
         app.sources.page.active = true
-        app.get('page')
+        app.get('fb-page')
       },
       render: () =>
         m(app.components.layout, {
